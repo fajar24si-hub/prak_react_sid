@@ -1,0 +1,113 @@
+/* Import font modern */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: linear-gradient(#004B5F, #EE152A); /* Abu-abu kebiruan yang sangat soft */
+    color: #2c3e50;
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Container Card dengan kesan premium */
+.card {
+    max-width: 550px;
+    width: 100%;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+    border-top: 6px solid #004a8c; /* Biru khas PCR */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Overlay halus untuk kesan akademik */
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(225deg, #004a8c11 0%, transparent 70%);
+}
+
+/* Judul Mata Kuliah */
+h1 {
+    color: #004a8c; /* Biru PCR */
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Logo Politeknik */
+img {
+    display: block;
+    max-width: 220px;
+    height: auto;
+    margin: 0 auto 25px auto;
+}
+
+/* Hello World */
+h2, .hello-title {
+    color: #a31d24; /* Merah Maroon PCR */
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Bagian teks motivasi */
+.quote-section {
+    text-align: center;
+    background: #f8fbff;
+    padding: 15px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+
+/* Styling Data Mahasiswa (Nama & NIM) */
+.profile-info {
+    border-bottom: 1px solid #edf2f7;
+    padding: 15px 0;
+}
+
+.profile-info:last-of-type {
+    border-bottom: none;
+}
+
+.profile-info h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #004a8c;
+}
+
+.profile-info p {
+    margin: 5px 0 0 0;
+    font-size: 14px;
+    color: #64748b;
+}
+
+/* Footer modern */
+footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 13px;
+    color: #94a3b8;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+/* Garis dekoratif */
+hr {
+    border: 0;
+    height: 1px;
+    background: #e2e8f0;
+    margin: 20px 0;
+}
