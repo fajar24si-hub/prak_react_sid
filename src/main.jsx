@@ -1,13 +1,13 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import { BrowserRouter } from 'react-router-dom'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+// 1. Import BrowserRouter dari react-router-dom
+import { BrowserRouter } from "react-router-dom"; 
+import "./pertemuan-5/assets/tailwind.css"; 
+import App from "./App.jsx";
 
-createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-   <App />
-  </BrowserRouter>
-    
-  ,
-)
+// ✅ Benar: Langsung merender BrowserRouter
+createRoot(document.getElementById("root")).render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+);
