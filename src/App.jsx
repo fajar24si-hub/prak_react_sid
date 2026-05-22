@@ -35,8 +35,9 @@ function App() {
   const location = useLocation();
 
   // cek apakah route valid
-  const validRoutes = ["/", "/orders", "/customers", "/login", "/register", "/forgot", "/products"];
-  const isErrorPage = !validRoutes.includes(location.pathname);
+  const validRoutes = ["/", "/orders", "/customers", "/login", "/register", "/forgot", "/products" ];
+  const isProductDetail = /^\/products\/\d+$/.test(location.pathname); // cek route /products/:id
+  const isErrorPage = !validRoutes.includes(location.pathname) && !isProductDetail;
 
   // 👉 kalau error → tampil full screen TANPA sidebar
   if (isErrorPage) {
