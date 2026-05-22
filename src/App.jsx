@@ -2,6 +2,7 @@ import React, { Suspense, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import "./assets/tailwind.css";
 import Loading from "./components/Loading";
+import NotFound from "./components/NotFound";
 
 //import Sidebar from "./components/Sidebar";
 //import Header from "./components/Header";
@@ -26,13 +27,15 @@ const MainLayout = React.lazy(() => import("./layouts/MainLayout"));
 const AuthLayout = React.lazy(() => import("./layouts/AuthLayout"));
 const Sidebar = React.lazy(() => import("./components/Sidebar"));
 const Header = React.lazy(() => import("./components/Header"));
+const Products = React.lazy(() => import("./pages/Products"))
+const ProductDetail = React.lazy(() => import("./pages/ProductDetail.jsx"))
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const location = useLocation();
 
   // cek apakah route valid
-  const validRoutes = ["/", "/orders", "/customers", "/login", "/register", "/forgot"];
+  const validRoutes = ["/", "/orders", "/customers", "/login", "/register", "/forgot", "/products"];
   const isErrorPage = !validRoutes.includes(location.pathname);
 
   // 👉 kalau error → tampil full screen TANPA sidebar
@@ -44,6 +47,8 @@ function App() {
     <Suspense fallback={<Loading />}>
     <Routes>
       <Route path="/" element={<MainLayout />}>
+        <Route path="/products" element={<Products />} />
+        <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/" element={<Dashboard searchTerm={searchTerm} />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/customers" element={<Customers />} />
