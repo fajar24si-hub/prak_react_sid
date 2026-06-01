@@ -1,17 +1,15 @@
 import { NavLink } from "react-router-dom";
 import {
   MdDashboard, MdShoppingCart, MdPeople,
-  MdErrorOutline, MdWarning
+  MdInventory2, MdWidgets
 } from "react-icons/md";
 
 const menuItems = [
-  { icon: MdDashboard, label: "Dashboard", path: "/" },
-  { icon: MdShoppingCart, label: "Order List", path: "/orders" },
-  { icon: MdPeople, label: "Customers", path: "/customers" },
-  { icon: MdShoppingCart, label: "Products", path: "/products" },
-  { icon: MdErrorOutline, label: "Error 400", path: "/error-400" },
-  { icon: MdWarning, label: "Error 401", path: "/error-401" },
-  { icon: MdErrorOutline, label: "Error 403", path: "/error-403" },
+  { icon: MdDashboard,   label: "Dashboard",  path: "/",           end: true  },
+  { icon: MdShoppingCart,label: "Orders",      path: "/orders",     end: false },
+  { icon: MdPeople,      label: "Customers",   path: "/customers",  end: false },
+  { icon: MdInventory2,  label: "Products",    path: "/products",   end: false },
+  { icon: MdWidgets,     label: "Components",  path: "/components", end: false },
 ];
 
 export default function Sidebar() {
@@ -35,8 +33,8 @@ export default function Sidebar() {
 
       {/* Navigation */}
       <nav className="flex-1 px-3 py-4 overflow-y-auto">
-        {menuItems.map(({ icon: Icon, label, path }) => (
-          <NavLink key={label} to={path} className={menuClass}>
+        {menuItems.map(({ icon: Icon, label, path, end }) => (
+          <NavLink key={label} to={path} end={end} className={menuClass}>
             <Icon className="text-[17px] flex-shrink-0" />
             {label}
           </NavLink>

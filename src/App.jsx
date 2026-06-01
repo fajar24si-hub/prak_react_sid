@@ -4,18 +4,6 @@ import "./assets/tailwind.css";
 import Loading from "./components/Loading";
 import NotFound from "./components/NotFound";
 
-//import Sidebar from "./components/Sidebar";
-//import Header from "./components/Header";
-//import Dashboard from "./pages/Dashboard";
-//import Orders from "./pages/Orders";
-//import Customers from "./pages/Customers";
-//import NotFound from "./components/NotFound";
-//import MainLayout from "./layouts/MainLayout";
-//import AuthLayout from "./layouts/AuthLayout";
-//import Login from "./pages/auth/Login";
-//import Register from "./pages/auth/Register";
-//import Forgot from "./pages/auth/Forgot";
-
 const Dashboard = React.lazy(() => import("./pages/Dashboard"));
 const Orders = React.lazy(() => import("./pages/Orders"));
 const Customers = React.lazy(() => import("./pages/Customers"));
@@ -29,13 +17,14 @@ const Sidebar = React.lazy(() => import("./components/Sidebar"));
 const Header = React.lazy(() => import("./components/Header"));
 const Products = React.lazy(() => import("./pages/Products"))
 const ProductDetail = React.lazy(() => import("./pages/ProductDetail.jsx"))
+const Components = React.lazy(() => import("./pages/Components"))
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const location = useLocation();
 
   // cek apakah route valid
-  const validRoutes = ["/", "/orders", "/customers", "/login", "/register", "/forgot", "/products" ];
+  const validRoutes = ["/", "/orders", "/customers", "/login", "/register", "/forgot", "/products", "/components" ];
   const isProductDetail = /^\/products\/\d+$/.test(location.pathname); // cek route /products/:id
   const isErrorPage = !validRoutes.includes(location.pathname) && !isProductDetail;
 
@@ -53,6 +42,7 @@ function App() {
         <Route path="/" element={<Dashboard searchTerm={searchTerm} />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/customers" element={<Customers />} />
+        <Route path="/components" element={<Components />} />
       </Route>
       <Route element={<AuthLayout />}>
         <Route path="/login" element={<Login />} />

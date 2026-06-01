@@ -1,16 +1,16 @@
 import { NavLink } from "react-router-dom";
 import { AiFillAppstore, AiFillCustomerService } from "react-icons/ai";
-import { TbListDetails } from "react-icons/tb";
+import { BsCart3, BsBoxSeam, BsGrid1X2Fill } from "react-icons/bs";
 import { FaPlus, FaChevronRight } from "react-icons/fa";
 
 export default function Sidebar() {
 
     const menuList = [
-    { id: "dashboard", name: "Dashboard", icon: <AiFillAppstore size={22} />, to: "/" },
-    { id: "orders",    name: "Orders",    icon: <TbListDetails size={22} />, to: "/orders" },
-    { id: "customers", name: "Customers", icon: <AiFillCustomerService size={22} />, to: "/customers" },
-
-   
+    { id: "dashboard",  name: "Dashboard",  icon: <AiFillAppstore size={22} />,      to: "/",           end: true },
+    { id: "orders",     name: "Orders",     icon: <BsCart3 size={20} />,              to: "/orders",     end: false },
+    { id: "customers",  name: "Customers",  icon: <AiFillCustomerService size={22} />,to: "/customers",  end: false },
+    { id: "products",   name: "Products",   icon: <BsBoxSeam size={20} />,            to: "/products",   end: false },
+    { id: "components", name: "Components", icon: <BsGrid1X2Fill size={20} />,        to: "/components", end: false },
 ];
 
     // ✅ menuClass disesuaikan dengan class baru
@@ -46,7 +46,7 @@ export default function Sidebar() {
                     <ul className="space-y-2">
                         {menuList.map((item) => (
                             <li key={item.id}>
-                                <NavLink to={item.to} className={menuClass}>
+                                <NavLink to={item.to} end={item.end} className={menuClass}>
                                     {({ isActive }) => (
                                         <>
                                             <div className="flex items-center gap-4 z-10">
