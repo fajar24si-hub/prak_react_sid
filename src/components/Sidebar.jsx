@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { AiFillAppstore, AiFillCustomerService } from "react-icons/ai";
 import { BsCart3, BsBoxSeam, BsGrid1X2Fill } from "react-icons/bs";
-import { FaPlus, FaChevronRight } from "react-icons/fa";
+import { FaPlus, FaChevronRight, FaStar } from "react-icons/fa";
 
 export default function Sidebar() {
 
@@ -11,7 +11,7 @@ export default function Sidebar() {
     { id: "customers",  name: "Customers",  icon: <AiFillCustomerService size={22} />,to: "/customers",  end: false },
     { id: "products",   name: "Products",   icon: <BsBoxSeam size={20} />,            to: "/products",   end: false },
     { id: "components", name: "Components", icon: <BsGrid1X2Fill size={20} />,        to: "/components", end: false },
-    { id: "fitur-xyz",  name: "Fitur XYZ",  icon: <BsGrid1X2Fill size={20} />,        to: "/fitur-xyz",  end: false },
+    { id: "fitur-xyz",  name: "Fitur XYZ",  icon: <FaStar size={20} />,              to: "/fitur-xyz",  end: false },
 ];
 
     // ✅ menuClass disesuaikan dengan class baru
