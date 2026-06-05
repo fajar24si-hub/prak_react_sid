@@ -26,12 +26,6 @@ export default function Header({ searchTerm, setSearchTerm }) {
 
                 {/* Icons tetap */}
                 <div className="flex items-center space-x-4 ml-4">
-                    <div className="relative p-3 bg-blue-50 rounded-2xl text-blue-500">
-                        <FaBell />
-                        <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 bg-rose-500 text-white rounded-full px-2 py-0.5 text-[10px] font-bold">
-                            50
-                        </span>
-                    </div>
 
                     <div className="p-3 bg-blue-50 rounded-2xl">
                         <FcAreaChart />
