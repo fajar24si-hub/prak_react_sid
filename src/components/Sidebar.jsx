@@ -11,6 +11,7 @@ export default function Sidebar() {
     { id: "customers",  name: "Customers",  icon: <AiFillCustomerService size={22} />,to: "/customers",  end: false },
     { id: "products",   name: "Products",   icon: <BsBoxSeam size={20} />,            to: "/products",   end: false },
     { id: "components", name: "Components", icon: <BsGrid1X2Fill size={20} />,        to: "/components", end: false },
+    { id: "fitur-xyz",  name: "Fitur XYZ",  icon: <BsGrid1X2Fill size={20} />,        to: "/fitur-xyz",  end: false },
 ];
 
     // ✅ menuClass disesuaikan dengan class baru

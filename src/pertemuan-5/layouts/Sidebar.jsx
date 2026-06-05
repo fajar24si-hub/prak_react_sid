@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import {
   MdDashboard, MdShoppingCart, MdPeople,
-  MdInventory2, MdWidgets
+  MdInventory2, MdWidgets, MdApps
 } from "react-icons/md";
 
 const menuItems = [
@@ -10,6 +10,7 @@ const menuItems = [
   { icon: MdPeople,      label: "Customers",   path: "/customers",  end: false },
   { icon: MdInventory2,  label: "Products",    path: "/products",   end: false },
   { icon: MdWidgets,     label: "Components",  path: "/components", end: false },
+  { icon: MdApps,        label: "Fitur XYZ",   path: "/fitur-xyz",  end: false },
 ];
 
 export default function Sidebar() {

@@ -18,13 +18,14 @@ const Header = React.lazy(() => import("./components/Header"));
 const Products = React.lazy(() => import("./pages/Products"))
 const ProductDetail = React.lazy(() => import("./pages/ProductDetail.jsx"))
 const Components = React.lazy(() => import("./pages/Components"))
+const FiturXyz = React.lazy(() => import("./pages/fiturxyz"))
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const location = useLocation();
 
   // cek apakah route valid
-  const validRoutes = ["/", "/orders", "/customers", "/login", "/register", "/forgot", "/products", "/components" ];
+  const validRoutes = ["/", "/orders", "/customers", "/login", "/register", "/forgot", "/products", "/components", "/fitur-xyz" ];
   const isProductDetail = /^\/products\/\d+$/.test(location.pathname); // cek route /products/:id
   const isErrorPage = !validRoutes.includes(location.pathname) && !isProductDetail;
 
@@ -43,6 +44,7 @@ function App() {
         <Route path="/orders" element={<Orders />} />
         <Route path="/customers" element={<Customers />} />
         <Route path="/components" element={<Components />} />
+        <Route path="/fitur-xyz" element={<FiturXyz />} />
       </Route>
       <Route element={<AuthLayout />}>
         <Route path="/login" element={<Login />} />

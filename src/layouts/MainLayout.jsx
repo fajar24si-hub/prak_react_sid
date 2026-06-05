@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import Sidebar from "../pertemuan-5/layouts/Sidebar";
-import Header from "../pertemuan-5/layouts/Header";
+import Sidebar from "../components/Sidebar";
+import Header from "../components/Header";
 
 export default function MainLayout() {
     return (
