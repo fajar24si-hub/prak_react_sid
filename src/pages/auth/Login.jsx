@@ -1,12 +1,12 @@
-import axios from "axios";
 import { useState } from "react";
 import { BsFillExclamationDiamondFill } from "react-icons/bs";
 import { ImSpinner2 } from "react-icons/im";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Login() {
-  /* navigate, state & handleChange*/
   const navigate = useNavigate();
+  const { login, refreshProfile } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [dataForm, setDataForm] = useState({
@@ -27,33 +27,35 @@ export default function Login() {
     e.preventDefault();
 
     setLoading(true);
-    setError(false);
+    setError("");
 
-    axios
-      .post("https://dummyjson.com/user/login", {
-        username: dataForm.email,
-        password: dataForm.password,
-      })
-      .then((response) => {
-        // Jika status bukan 200, tampilkan pesan error
-        if (response.status !== 200) {
-          setError(response.data.message);
-          return;
-        }
+    const result = await login(dataForm.email, dataForm.password);
 
-        // Redirect ke dashboard jika login sukses
+    if (result.success) {
+      // Refresh profile untuk mendapatkan role terbaru
+      await refreshProfile();
+
+      // Ambil profile dari Supabase untuk cek role
+      const { supabase } = await import("../../lib/supabase");
+      const { data: profileData } = await supabase
+        .from("profiles")
+        .select("role")
+        .eq("id", result.user.id)
+        .single();
+
+      // Redirect berdasarkan role
+      if (profileData?.role === "admin") {
         navigate("/");
-      })
-      .catch((err) => {
-        if (err.response) {
-          setError(err.response.data.message || "An error occurred");
-        } else {
-          setError(err.message || "An unknown error occurred");
-        }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+      } else if (profileData?.role === "member" || profileData?.role === "guest") {
+        navigate("/member/dashboard");
+      } else {
+        navigate("/member/dashboard");
+      }
+    } else {
+      setError(result.error || "Login gagal");
+    }
+
+    setLoading(false);
   };
   /* error & loading status */
   const errorInfo = error ? (
@@ -108,12 +110,26 @@ export default function Login() {
         </div>
         <button
           type="submit"
+          disabled={loading}
           className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4
-                        rounded-lg transition duration-300"
+                        rounded-lg transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Login
+          {loading ? "Mohon Tunggu..." : "Login"}
         </button>
       </form>
+      <div className="mt-4 text-center text-sm text-gray-600">
+        <p>
+          Belum punya akun?{" "}
+          <Link to="/register" className="text-green-600 hover:text-green-700 font-semibold">
+            Register
+          </Link>
+        </p>
+        <p className="mt-1">
+          <Link to="/forgot" className="text-gray-500 hover:text-gray-700 text-xs">
+            Lupa password?
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }

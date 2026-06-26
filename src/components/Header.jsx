@@ -1,12 +1,20 @@
 import { useState } from "react";
-// PASTIKAN SEMUA ICON INI SUDAH DI IMPORT
 import { FaBell, FaSearch } from "react-icons/fa";
 import { FcAreaChart } from "react-icons/fc";
 import { SlSettings } from "react-icons/sl";
-import { HiOutlineLightningBolt } from "react-icons/hi"; // <--- INI SERING TERLUPA
+import { HiOutlineLightningBolt } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function Header({ searchTerm, setSearchTerm }) {
     const [showModal, setShowModal] = useState(false);
+    const { user, profile, logout } = useAuth();
+    const navigate = useNavigate();
+
+    const handleLogout = async () => {
+        await logout();
+        navigate("/login");
+    };
 
     return (
         <>
@@ -43,13 +51,19 @@ export default function Header({ searchTerm, setSearchTerm }) {
 
                     <div className="flex items-center space-x-4 border-l pl-4 border-gray-300">
                         <span className="hidden md:inline text-sm">
-                            Hello, <span className="font-bold">Fajar Farhan</span>
+                            Hello, <span className="font-bold">{profile?.full_name || user?.email || "Admin"}</span>
                         </span>
                         <img
                             src="https://cdn-icons-png.flaticon.com/512/4140/4140037.png"
                             className="w-10 h-10 rounded-full border-2 border-white shadow-sm"
                             alt="avatar"
                         />
+                        <button
+                            onClick={handleLogout}
+                            className="text-xs bg-red-50 hover:bg-red-100 text-red-600 font-semibold px-3 py-1.5 rounded-lg transition-colors"
+                        >
+                            Logout
+                        </button>
                     </div>
                 </div>
             </div>
